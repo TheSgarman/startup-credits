@@ -24,7 +24,7 @@ programs:
     program_slug: zimt-startup-program
     program_slug_aliases: []
     title: Zimt Startup Program
-    summary: Zimt offers eligible startups discounted annual plans over three years.
+    summary: Zimt's Startup Program gives eligible early-stage startups discounted Signals+ Annual plans that step down over three years.
     source_ids:
       - src_80810f6b17aa2f14ca55e2d0ccbe3b762b2d9822964db247bae036817f528185
 offers:
@@ -32,17 +32,19 @@ offers:
     program_id: prg_01m1ve9w1pzk37751xe50esx9p
     offer_slug: signals-plus-three-year-startup-discount
     offer_slug_aliases: []
-    title: Three-year startup discount on Zimt Signals+ Annual
-    summary: Eligible startups can apply for 60% off Signals+ Annual in year one, 40% off in year two, and 30% off in year three.
-    description: Discounts start at activation and step down annually; standard annual pricing follows year three. Payments are nonrefundable and offers cannot be combined. Use is limited to employees and competitor monitoring; reports cannot be shared or resold. Eligibility is assessed at contract signing.
+    title: Zimt Signals+ Annual at 60%, 40% and 30% off over three years
+    summary: Early-stage startups with up to USD 2 million in funding, under 5 years old and fewer than 50 employees can apply for 60% off Signals+ Annual in year 1, 40% in year 2 and 30% in year 3.
     lifecycle:
       status: active
       effective_from: 2026-09-06T13:25:10.326Z
     economics:
+      consideration:
+        kind: variable
+        description: The startup pays for a Signals+ Annual plan at the startup discount of 60% in the 1st year, 40% in the 2nd year and 30% in the 3rd year.
       benefits:
         - benefit_id: ben_year_1
-          description: 60% discount in the first year.
-          applies_to: Signals+ Annual plans, first year
+          description: 60% discount for the 1st year.
+          applies_to: Signals+ Annual plans
           kind: discount
           percentage:
             kind: exact
@@ -51,8 +53,8 @@ offers:
             kind: exact
             value: P1Y
         - benefit_id: ben_year_2
-          description: 40% discount in the second year.
-          applies_to: Signals+ Annual plans, second year
+          description: 40% discount for the 2nd year.
+          applies_to: Signals+ Annual plans
           kind: discount
           percentage:
             kind: exact
@@ -61,8 +63,8 @@ offers:
             kind: exact
             value: P1Y
         - benefit_id: ben_year_3
-          description: 30% discount in the third year.
-          applies_to: Signals+ Annual plans, third year
+          description: 30% discount for the 3rd year.
+          applies_to: Signals+ Annual plans
           kind: discount
           percentage:
             kind: exact
@@ -70,17 +72,18 @@ offers:
           duration:
             kind: exact
             value: P1Y
-      consideration:
-        kind: variable
-        description: The startup pays the discounted Signals+ Annual subscription price.
     eligibility:
       rule:
         kind: all
         rules:
           - criterion_id: cri_funding
-            kind: manual
-            reason: external-verification
-            statement: The startup has raised no more than $2 million in funding.
+            kind: predicate
+            fact: company.funding_raised_usd
+            operator: lte
+            value:
+              type: number
+              value: 2000000
+            statement: Early stage, with up to USD 2 million in funding.
           - criterion_id: cri_age
             kind: predicate
             fact: company.age_months
@@ -88,7 +91,7 @@ offers:
             value:
               type: number
               value: 60
-            statement: The startup is under five years old.
+            statement: Under 5 years old.
           - criterion_id: cri_team
             kind: predicate
             fact: company.employee_count
@@ -96,23 +99,19 @@ offers:
             value:
               type: number
               value: 50
-            statement: The startup has fewer than 50 employees.
+            statement: Small team, with fewer than 50 employees.
           - criterion_id: cri_customer
-            kind: manual
-            reason: external-verification
-            statement: The applicant is a new customer and not currently a Zimt customer.
+            kind: predicate
+            fact: company.is_current_customer
+            operator: eq
+            value:
+              type: boolean
+              value: false
+            statement: New customer, not currently a Zimt customer.
           - criterion_id: cri_signup_window
             kind: manual
             reason: external-verification
-            statement: The startup must apply within 90 days of sign-up.
-          - criterion_id: cri_business
-            kind: manual
-            reason: external-verification
-            statement: A corporate email and verifiable business registration are required.
-          - criterion_id: cri_exclusions
-            kind: manual
-            reason: external-verification
-            statement: Competitive intelligence, account-based marketing services, market research, business intelligence software, and competitor affiliates or representatives are excluded.
+            statement: Must apply within 90 days of sign-up.
     roles:
       terms_authority_entity_id: ent_01m1ve9w1hb5jejsk0qp47f76k
       access_operator_entity_id: ent_01m1ve9w1hb5jejsk0qp47f76k
@@ -120,6 +119,7 @@ offers:
       availability: public
       method: form
       url: https://www.zimt.ai/startup-program
-    terms_url: https://www.zimt.ai/startup-program
+      instructions: Apply with the form on the Zimt Startup Program page, giving company email, year founded, latest funding round, total raised and team size.
     source_ids:
       - src_80810f6b17aa2f14ca55e2d0ccbe3b762b2d9822964db247bae036817f528185
+      - src_9fbcea1f95fa62c4dcb10867da7eb5c08e3d8727289c92f50f401b60595e45f2
