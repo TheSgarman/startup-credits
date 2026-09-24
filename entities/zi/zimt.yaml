@@ -32,15 +32,15 @@ offers:
     program_id: prg_01m1ve9w1pzk37751xe50esx9p
     offer_slug: signals-plus-three-year-startup-discount
     offer_slug_aliases: []
-    title: Zimt Signals+ Annual at 60%, 40% and 30% off over three years
-    summary: Early-stage startups with up to USD 2 million in funding, under 5 years old and fewer than 50 employees can apply for 60% off Signals+ Annual in year 1, 40% in year 2 and 30% in year 3.
+    title: "Zimt for Startups: up to 60% off Signals+ Annual plans"
+    summary: Eligible startups can apply for 60% off Signals+ Annual plans, with a 60% discount for the 1st year, 40% for the 2nd year and 30% for the 3rd year.
     lifecycle:
       status: active
       effective_from: 2026-09-06T13:25:10.326Z
     economics:
       consideration:
         kind: variable
-        description: The startup pays for a Signals+ Annual plan at the startup discount of 60% in the 1st year, 40% in the 2nd year and 30% in the 3rd year.
+        description: The startup receives a 60% discount for the 1st year, 40% for the 2nd year and 30% for the 3rd year.
       benefits:
         - benefit_id: ben_year_1
           description: 60% discount for the 1st year.
@@ -74,44 +74,10 @@ offers:
             value: P1Y
     eligibility:
       rule:
-        kind: all
-        rules:
-          - criterion_id: cri_funding
-            kind: predicate
-            fact: company.funding_raised_usd
-            operator: lte
-            value:
-              type: number
-              value: 2000000
-            statement: Early stage, with up to USD 2 million in funding.
-          - criterion_id: cri_age
-            kind: predicate
-            fact: company.age_months
-            operator: lt
-            value:
-              type: number
-              value: 60
-            statement: Under 5 years old.
-          - criterion_id: cri_team
-            kind: predicate
-            fact: company.employee_count
-            operator: lt
-            value:
-              type: number
-              value: 50
-            statement: Small team, with fewer than 50 employees.
-          - criterion_id: cri_customer
-            kind: predicate
-            fact: company.is_current_customer
-            operator: eq
-            value:
-              type: boolean
-              value: false
-            statement: New customer, not currently a Zimt customer.
-          - criterion_id: cri_signup_window
-            kind: manual
-            reason: external-verification
-            statement: Must apply within 90 days of sign-up.
+        kind: manual
+        criterion_id: cri_funding
+        reason: external-verification
+        statement: "Early stage: up to $2 million in funding and under 5 years old. Small team: fewer than 50 employees. New customer: not currently a Zimt customer. Must apply within 90 days of sign-up."
     roles:
       terms_authority_entity_id: ent_01m1ve9w1hb5jejsk0qp47f76k
       access_operator_entity_id: ent_01m1ve9w1hb5jejsk0qp47f76k
